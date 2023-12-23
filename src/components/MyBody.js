@@ -2,6 +2,7 @@ import ResturantCard from "./ResturantCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../util/useOnlineStatus";
 
 function MyBody() {
   //fetch data from API
@@ -48,6 +49,16 @@ function MyBody() {
     );
     setResturantData(filtered);
   }, [text]);
+
+  const onlineStatus = useOnlineStatus();
+
+  if(onlineStatus === false){
+    return (
+    <h1 className=" font-bold text-4xl text-slate-500 h-screen w-auto m-44 flex justify-center align-middle" >You are offline now. Check the connection please.</h1>
+    )
+  }
+  
+  
 
   return originalData.length === 0 && resturantData.length === 0 ? (
     <Shimmer />

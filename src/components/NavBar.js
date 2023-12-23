@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../util/useOnlineStatus";
 
 const NavBar = () => {
   const [btn, setBtn] = useState("Login");
-
-  return(
+  const onlineStatus = useOnlineStatus();
+  return (
     <div className=" shadow-lg header flex gap-64 font-bold h-20 m-auto justify-center items-center align-middle ">
       <div className="">
-        <Link to="/home"> <img className="logo" src="src/image/Designer.jpeg" alt="Monato" /> </Link>
+        <Link to="/home">
+          {" "}
+          <img
+            className="logo"
+            src="src/image/Designer.jpeg"
+            alt="Monato"
+          />{" "}
+        </Link>
       </div>
 
       <div>
@@ -24,8 +32,10 @@ const NavBar = () => {
         </ul>
       </div>
 
+      <div>
+        <h1>Online Status: { onlineStatus ? "😃 ✅" : "😭 ❎"}</h1>
+      </div>
       <div className=" flex space-x-2  ">
-
         <div className=" ">
           <img src="" alt="cart" />
         </div>
