@@ -1,6 +1,7 @@
 import ResturantCard from "./ResturantCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Shimmer from "./Shimmer";
 
 function MyBody() {
   //fetch data from API
@@ -48,7 +49,9 @@ function MyBody() {
     setResturantData(filtered);
   }, [text]);
 
-  return (
+  return originalData.length === 0 && resturantData.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className=" space-y-10 flex-col justify-center items-center align-middle w-2/3 mx-72 h-screen">
       <div className=" my-10 flex justify-center align-middle p-1 space-x-1">
         <input
@@ -83,7 +86,13 @@ function MyBody() {
 
       <div className=" my-10 grid grid-cols-5 gap-10 ">
         {resturantData.map((resturant) => (
-          <Link key={resturant.info.id} to = {"/restaurants/"+resturant.info.id} > <ResturantCard  resData={resturant} /> </Link> 
+          <Link
+            key={resturant.info.id}
+            to={"/restaurants/" + resturant.info.id}
+          >
+            {" "}
+            <ResturantCard resData={resturant} />{" "}
+          </Link>
         ))}
       </div>
 
