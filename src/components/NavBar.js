@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../util/useOnlineStatus";
+import logo from "../image/logo2.png";
 
 const NavBar = () => {
   const [btn, setBtn] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className=" shadow-lg header flex gap-64 font-bold h-20 m-auto justify-center items-center align-middle ">
+    <div className=" bg-white top-0 fixed z-10 w-full shadow-lg flex gap-64 font-bold h-20 m-auto justify-center items-center ">
       <div className="">
         <Link to="/home">
-          {" "}
           <img
+            height={10}
+            width={80}
             className="logo"
-            src="src/image/Designer.jpeg"
+            src={logo}
             alt="Monato"
-          />{" "}
+          />
         </Link>
       </div>
 
@@ -29,11 +31,16 @@ const NavBar = () => {
           <li>
             <Link to="/contact"> Contact </Link>
           </li>
+          <li>
+            <Link className=" text-blue-400 " to="/grocery">
+              🛒 Grocery
+            </Link>
+          </li>
         </ul>
       </div>
 
       <div>
-        <h1>Online Status: { onlineStatus ? "😃 ✅" : "😭 ❎"}</h1>
+        <h1>Online Status: {onlineStatus ? "😃 ✅" : "😭 ❎"}</h1>
       </div>
       <div className=" flex space-x-2  ">
         <div className=" ">

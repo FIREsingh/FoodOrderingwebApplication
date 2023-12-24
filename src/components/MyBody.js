@@ -52,19 +52,19 @@ function MyBody() {
 
   const onlineStatus = useOnlineStatus();
 
-  if(onlineStatus === false){
+  if (onlineStatus === false) {
     return (
-    <h1 className=" font-bold text-4xl text-slate-500 h-screen w-auto m-44 flex justify-center align-middle" >You are offline now. Check the connection please.</h1>
-    )
+      <h1 className=" font-bold text-4xl text-slate-500 h-screen w-auto m-44 flex justify-center align-middle">
+        You are offline now. Check the connection please.
+      </h1>
+    );
   }
-  
-  
 
   return originalData.length === 0 && resturantData.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className=" space-y-10 flex-col justify-center items-center align-middle w-2/3 mx-72 h-screen">
-      <div className=" my-10 flex justify-center align-middle p-1 space-x-1">
+    <div className="my-40 space-y-10 flex-col justify-center items-center align-middle w-2/3 mx-72 h-screen">
+      <div className=" flex justify-center align-middle p-1 space-x-1">
         <input
           type="text"
           placeholder="Search"
