@@ -33,7 +33,7 @@ export default function AboutUs() {
             <span className=" text-8xl">Sup!</span>
           </h1>
           <h1 className=" my-6">
-            My name is Manish Singh. Say me Hello!{" "}
+            My name is Manish Singh. Say hello to me.
             <Link className=" text-blue-500" to="/contact">
               Contact
             </Link>

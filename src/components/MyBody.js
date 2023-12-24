@@ -1,10 +1,13 @@
-import ResturantCard from "./ResturantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../util/useOnlineStatus";
 
 function MyBody() {
+  //Promoted RestaurantCard
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
   //fetch data from API
   const fetchData = async () => {
     const data = await fetch("https://firesingh.github.io/api/Swiggy.json");
@@ -12,7 +15,7 @@ function MyBody() {
     let myResData =
       json.data.success.cards[4].gridWidget.gridElements.infoWithStyle
         .restaurants;
-    setResturantData(myResData);
+    setRestaurantData(myResData);
     setOriginalData(myResData);
   };
   useEffect(() => {
@@ -23,20 +26,19 @@ function MyBody() {
   const [originalData, setOriginalData] = useState([]);
 
   // For top rated retaurent.
-  const [resturantData, setResturantData] = useState([]);
+  const [restaurantData, setRestaurantData] = useState([]);
 
   //toggle for Top Rated restaurant
   const [clickedOnTopRated, setclickedOnTopRated] = useState(false);
-
   const clickHandler = () => {
     if (clickedOnTopRated === false) {
       let filteredResturant = originalData.filter(
         (res) => res.info.avgRating >= 4.5
       );
-      setResturantData(filteredResturant);
+      setRestaurantData(filteredResturant);
       setclickedOnTopRated(true);
     } else {
-      setResturantData(originalData);
+      setRestaurantData(originalData);
       setclickedOnTopRated(false);
     }
   };
@@ -47,11 +49,11 @@ function MyBody() {
     const filtered = originalData.filter((res) =>
       res.info.name.toLowerCase().includes(text.toLowerCase())
     );
-    setResturantData(filtered);
+    setRestaurantData(filtered);
   }, [text]);
 
+  //To show Online/Offline status of user
   const onlineStatus = useOnlineStatus();
-
   if (onlineStatus === false) {
     return (
       <h1 className=" font-bold text-4xl text-slate-500 h-screen w-auto m-44 flex justify-center align-middle">
@@ -60,7 +62,7 @@ function MyBody() {
     );
   }
 
-  return originalData.length === 0 && resturantData.length === 0 ? (
+  return originalData.length === 0 && restaurantData.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="my-40 space-y-10 flex-col justify-center items-center align-middle w-2/3 mx-72 h-screen">
@@ -78,7 +80,7 @@ function MyBody() {
             const filtered = originalData.filter((res) =>
               res.info.name.toLowerCase().includes(text.toLowerCase())
             );
-            setResturantData(filtered);
+            setRestaurantData(filtered);
           }}
           className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4"
         >
@@ -91,18 +93,21 @@ function MyBody() {
           onClick={clickHandler}
           className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4"
         >
-          Top Rated Resturant
+          Top Rated Restaurant
         </button>
       </div>
 
       <div className=" my-10 grid grid-cols-5 gap-10 ">
-        {resturantData.map((resturant) => (
+        {restaurantData.map((restaurant) => (
           <Link
-            key={resturant.info.id}
-            to={"/restaurants/" + resturant.info.id}
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
           >
-            {" "}
-            <ResturantCard resData={resturant} />{" "}
+            {restaurant.info.promoted ? (
+              <RestaurantCardPromoted resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
