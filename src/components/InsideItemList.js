@@ -1,0 +1,41 @@
+import React from "react";
+import { CDN_URL } from "../util/constants";
+
+export default function InsideItemList({ data }) {
+  console.log("my ", data);
+  return (
+    <div>
+      {data.map((items) => (
+        <div>
+          <div className=" flex justify-between align-middle">
+            <div className=" w-2/3 my-11 space-y-1 p-4 ">
+              <h1 className=" font-semibold"> {items?.card?.info?.name} </h1>
+              <h1 className=" text-sm">
+                ₹
+                {items?.card?.info?.price
+                  ? items?.card?.info?.price / 100
+                  : items?.card?.info?.defaultPrice / 100}
+              </h1>
+              <h1 className=" text-xs text-slate-500">
+                {items?.card?.info?.description}{" "}
+              </h1>
+            </div>
+
+            <div className=" relative m-auto w-1/3">
+              <img
+                className=" rounded-md shadow-md h-32 w-40 "
+                src={CDN_URL + items?.card?.info?.imageId}
+                alt="Pic"
+              />
+              <button className=" absolute right-24 -top-5 border bg-blue-400 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4">
+                add+
+              </button>
+            </div>
+          </div>
+
+          <div className=" border-b-2 "></div>
+        </div>
+      ))}
+    </div>
+  );
+}

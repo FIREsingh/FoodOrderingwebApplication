@@ -7,7 +7,7 @@ const NavBar = () => {
   const [btn, setBtn] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
-    <div className=" bg-white top-0 fixed z-10 w-full shadow-lg flex gap-64 font-bold h-20 m-auto justify-center items-center ">
+    <div className=" bg-white top-0 fixed z-20 w-full shadow-lg flex gap-64 font-bold h-20 m-auto justify-center items-center ">
       <div className="">
         <Link to="/home">
           <img

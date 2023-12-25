@@ -26,10 +26,10 @@ const RestaurantMenu = () => {
   //
   console.log("this is category: ", category);
   return (
-    <div className="my-40 w-1/3 mx-auto space-y-20 ">
-      <div className=" flex justify-between">
+    <div className="my-40 w-2/5 mx-auto space-y-10 ">
+      <div className=" flex justify-between ">
         <div className="flex flex-col justify-self-start text-xs gap-1">
-          <h1 className=" font-bold text-2xl">{name}</h1>
+          <h1 className=" font-bold text-3xl">{name}</h1>
           <h3 className=" text-slate-600">{cuisines.join(",")}</h3>
         </div>
 
@@ -40,8 +40,9 @@ const RestaurantMenu = () => {
           </h2>
         </div>
       </div>
+      <div className=" border-b-2"></div>
 
-      <div>
+      <div className="">
         {category.map((c) => (
           <RestaurantCategory data={c?.card?.card} />
         ))}

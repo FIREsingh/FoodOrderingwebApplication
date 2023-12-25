@@ -1,3 +1,5 @@
+import { CDN_URL } from "../util/constants";
+
 function RestaurantCard(props) {
   const { resData } = props;
   const { name, avgRating, cuisines, costForTwo, cloudinaryImageId } =
@@ -7,10 +9,7 @@ function RestaurantCard(props) {
     <div className=" bg-slate-50 flex-col justify-between p-1 w-56 h-80 border rounded-md hover:shadow-lg hover:scale-110 transition duration-200 ease-out ">
       <img
         className=" h-40 rounded-md w-full"
-        src={
-          "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          cloudinaryImageId
-        }
+        src={CDN_URL + cloudinaryImageId}
         alt="burger"
       />
 
