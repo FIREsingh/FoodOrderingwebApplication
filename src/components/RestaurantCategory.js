@@ -2,10 +2,14 @@ import { IoArrowDownCircleSharp } from "react-icons/io5";
 import ItemList from "./ItemList";
 import { useState } from "react";
 
-const RestaurantCategory = ({ data }) => {
-  const [visible, setVisible] = useState(true);
+const RestaurantCategory = ({ data, visible, setVisible }) => {
+  //toggle for show items
+  const [visible2, setVisible2] = useState(true);
+
   const clickHandler = () => {
-    setVisible(!visible);
+    setVisible();
+    setVisible2(!visible2);
+    console.log(visible);
   };
   return (
     <div className="border my-10 shadow-md p-3 rounded-md  ">
@@ -18,7 +22,7 @@ const RestaurantCategory = ({ data }) => {
           <IoArrowDownCircleSharp />
         </div>
       </div>
-      {visible && <ItemList items={data?.categories} />}
+      {visible2 && visible && <ItemList items={data?.categories} />}
     </div>
   );
 };

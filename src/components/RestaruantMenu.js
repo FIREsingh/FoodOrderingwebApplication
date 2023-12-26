@@ -3,9 +3,13 @@ import { useParams } from "react-router-dom";
 import useRestaruantMenu from "../util/useRestaruantMenu";
 import { PiStarFill } from "react-icons/pi";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
+
+  //showVisible data from child to parant
+  const [visible, setVisible] = useState(0);
 
   //custom hook
   const resInfo = useRestaruantMenu(resId);
@@ -23,8 +27,6 @@ const RestaurantMenu = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
     );
 
-  //
-  console.log("this is category: ", category);
   return (
     <div className="my-40 w-2/5 mx-auto space-y-10 ">
       <div className=" flex justify-between ">
@@ -43,8 +45,13 @@ const RestaurantMenu = () => {
       <div className=" border-b-2"></div>
 
       <div className="">
-        {category.map((c) => (
-          <RestaurantCategory data={c?.card?.card} />
+        {category.map((c, index) => (
+          <RestaurantCategory
+            key={c?.card?.card.title}
+            data={c?.card?.card}
+            visible={index === visible ? true : false}
+            setVisible={() => setVisible(index)}
+          />
         ))}
       </div>
     </div>
