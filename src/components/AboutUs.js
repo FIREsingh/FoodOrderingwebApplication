@@ -1,28 +1,7 @@
 import React from "react";
 import burger from "../image/burger.png";
 import { Link } from "react-router-dom";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
-import { motion } from "framer-motion";
-
-function Section({ children }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  return (
-    <section ref={ref}>
-      <span
-        style={{
-          transform: isInView ? "none" : "translateY(-200px)",
-          opacity: isInView ? 1 : 0,
-          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-        }}
-      >
-        {children}
-      </span>
-    </section>
-  );
-}
+import Section from "../Animation.js/Card";
 
 export default function AboutUs() {
   return (
@@ -30,12 +9,12 @@ export default function AboutUs() {
       <div className=" my-48 space-y-5">
         <Section>
           <h1>
-            <span className=" text-8xl">Sup!</span>
+            <span className=" text-orange-300 font-bold text-8xl">Sup!</span>
           </h1>
           <h1 className=" my-6">
             My name is Manish Singh. Say hello to me.
             <Link className=" text-blue-500" to="/contact">
-              <Link to="/contact">Contact</Link>
+              <Link to="/contact"> Contact</Link>
             </Link>
           </h1>
         </Section>

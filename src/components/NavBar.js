@@ -58,18 +58,20 @@ const NavBar = () => {
         </div>
 
         <div className=" space-x-2 ">
-          <button
-            onClick={() => {
-              if (btn === "Login") {
-                setBtn("Logout");
-              } else {
-                setBtn("Login");
-              }
-            }}
-            className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4"
-          >
-            {btn}
-          </button>
+          <Link to="/login">
+            <button
+              onClick={() => {
+                if (btn === "Login") {
+                  setBtn("Logout");
+                } else {
+                  setBtn("Login");
+                }
+              }}
+              className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4"
+            >
+              {btn}
+            </button>
+          </Link>
 
           <button className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4">
             SignUp

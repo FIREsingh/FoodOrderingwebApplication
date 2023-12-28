@@ -17,7 +17,7 @@ function Cart() {
   const cartItemList = useSelector((state) => state.cart.items);
 
   return cartItemList.length === 0 ? (
-    <div className=" text-center flex justify-center my-40 space-y-10 flex-col w-2/3 mx-72 h-screen">
+    <div className=" text-center flex justify-center my-30 space-y-10 flex-col w-2/3 mx-72 h-screen">
       <div>
         <MdRemoveShoppingCart className=" text-9xl m-auto text-slate-600" />
       </div>

@@ -8,6 +8,7 @@ import { Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaruantMenu";
 import { lazy, Suspense } from "react";
 import Cart from "./components/Cart";
+import LoginPage from "./components/LoginPage";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 
@@ -40,6 +41,10 @@ const AppRouter = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
       },
       {
         path: "*",

@@ -1,27 +1,22 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
-function Card({ text, index }) {
+function Section({ children }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <motion.div
-      className="card"
-      initial={{
-        opacity: 0,
-        // if odd index card,slide from right instead of left
-        x: index % 2 === 0 ? 50 : -50,
-      }}
-      whileInView={{
-        opacity: 1,
-        x: 0, // Slide in to its original position
-        transition: {
-          duration: 1, // Animation duration
-        },
-      }}
-      viewport={{ once: true }}
-    >
-      <p className="card-text">{text}</p>
-    </motion.div>
+    <section ref={ref}>
+      <span
+        style={{
+          transform: isInView ? "none" : "translateY(-200px)",
+          opacity: isInView ? 1 : 0,
+          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+        }}
+      >
+        {children}
+      </span>
+    </section>
   );
 }
-
-export default Card;
+export default Section;
