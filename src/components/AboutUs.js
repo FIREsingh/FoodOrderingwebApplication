@@ -35,7 +35,7 @@ export default function AboutUs() {
           <h1 className=" my-6">
             My name is Manish Singh. Say hello to me.
             <Link className=" text-blue-500" to="/contact">
-              Contact
+              <Link to="/contact">Contact</Link>
             </Link>
           </h1>
         </Section>

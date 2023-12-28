@@ -2,8 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../util/useOnlineStatus";
 import logo from "../image/logo2.png";
+import { HiMiniShoppingCart } from "react-icons/hi2";
+import { useSelector } from "react-redux";
 
 const NavBar = () => {
+  //data from redux for cart's number count
+  const cartItem = useSelector((state) => state.cart.items);
+  console.log(cartItem);
   const [btn, setBtn] = useState("Login");
   const onlineStatus = useOnlineStatus();
   return (
@@ -42,27 +47,34 @@ const NavBar = () => {
       <div>
         <h1>Online Status: {onlineStatus ? "😃 ✅" : "😭 ❎"}</h1>
       </div>
-      <div className=" flex space-x-2  ">
-        <div className=" ">
-          <img src="" alt="cart" />
+      <div className=" flex space-x-8  ">
+        <Link className="m-auto " to="/cart">
+          <div className="m-auto ">
+            <HiMiniShoppingCart className=" text-2xl" />
+          </div>
+        </Link>
+        <div className=" h-6 px-1 text-white relative -left-10 bg-orange-500 rounded-full">
+          <h1 className=" px-1 "> {cartItem.length} </h1>
         </div>
 
-        <button
-          onClick={() => {
-            if (btn === "Login") {
-              setBtn("Logout");
-            } else {
-              setBtn("Login");
-            }
-          }}
-          className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4"
-        >
-          {btn}
-        </button>
+        <div className=" space-x-2 ">
+          <button
+            onClick={() => {
+              if (btn === "Login") {
+                setBtn("Logout");
+              } else {
+                setBtn("Login");
+              }
+            }}
+            className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4"
+          >
+            {btn}
+          </button>
 
-        <button className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4">
-          SignUp
-        </button>
+          <button className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4">
+            SignUp
+          </button>
+        </div>
       </div>
     </div>
   );
