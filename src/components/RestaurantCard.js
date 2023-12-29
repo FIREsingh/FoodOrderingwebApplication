@@ -18,7 +18,6 @@ function RestaurantCard(props) {
           {name}
         </h1>
         <h1 className=" text-xs text-slate-400 overflow-hidden text-ellipsis whitespace-nowrap ">
-          {" "}
           {cuisines.join(",")}
         </h1>
         <div className=" flex justify-between text-xs text-slate-500 ">

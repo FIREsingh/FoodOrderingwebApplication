@@ -11,17 +11,17 @@ const RestaurantMenu = () => {
   //showVisible data from child to parant
   const [visible, setVisible] = useState(0);
 
-  //custom hook
+  //custom hook to fetch data from api
   const resInfo = useRestaruantMenu(resId);
+  console.log(resInfo);
 
   //Shimmer UI
   if (resInfo === null) return <Shimmer />;
-  console.log(resInfo);
 
   const { name, cuisines, avgRating } = resInfo?.cards[2]?.card?.card?.info;
 
   const category =
-    resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    resInfo?.cards[6]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
         c.card?.["card"]?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
@@ -47,7 +47,7 @@ const RestaurantMenu = () => {
       <div className="">
         {category.map((c, index) => (
           <RestaurantCategory
-            key={c?.card?.card.title}
+            key={c?.card?.card?.title}
             data={c?.card?.card}
             visible={index === visible ? true : false}
             setVisible={() => setVisible(index)}

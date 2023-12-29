@@ -11,9 +11,7 @@ const useRestaruantMenu = (resId) => {
     fetchData();
   }, []);
   const fetchData = async () => {
-    const json = await axios.get(
-      MENU_API + resId + "&isMenuUx4=true&submitAction=ENTER"
-    );
+    const json = await axios.get(MENU_API + resId + ".json");
     setRestInfo(json.data.data);
   };
   return resInfo;
