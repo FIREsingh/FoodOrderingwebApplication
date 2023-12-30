@@ -5,7 +5,7 @@ import { BsLinkedin } from "react-icons/bs";
 import { SiLeetcode } from "react-icons/si";
 import { FaFileCircleCheck } from "react-icons/fa6";
 import { motion } from "framer-motion";
-import Section from "../Animation.js/Card";
+import Section from "../Animation.js/Section";
 
 export default function Contact() {
   return (

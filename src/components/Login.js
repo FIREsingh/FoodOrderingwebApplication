@@ -1,6 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+  function clickHandler() {
+    navigate("/dashboard");
+  }
+
   return (
     <div className=" flex-col flex justify-center align-middle text-center shadow-md p-20 space-y-5 ">
       <h1 className=" font-semibold text-3xl text-slate-500 ">Login Here</h1>
@@ -21,7 +27,10 @@ export default function Login() {
         />
       </div>
       <div>
-        <button className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4">
+        <button
+          onClick={clickHandler}
+          className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4"
+        >
           Login
         </button>
       </div>

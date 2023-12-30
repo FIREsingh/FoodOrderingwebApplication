@@ -8,8 +8,7 @@ import { useSelector } from "react-redux";
 const NavBar = () => {
   //data from redux for cart's number count
   const cartItem = useSelector((state) => state.cart.items);
-  console.log(cartItem);
-  const [btn, setBtn] = useState("Login");
+
   const onlineStatus = useOnlineStatus();
   return (
     <div className=" bg-white top-0 fixed z-20 w-full shadow-lg flex gap-64 font-bold h-20 m-auto justify-center items-center ">
@@ -59,23 +58,16 @@ const NavBar = () => {
 
         <div className=" space-x-2 ">
           <Link to="/login">
-            <button
-              onClick={() => {
-                if (btn === "Login") {
-                  setBtn("Logout");
-                } else {
-                  setBtn("Login");
-                }
-              }}
-              className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4"
-            >
-              {btn}
+            <button className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4">
+              Login
             </button>
           </Link>
 
-          <button className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4">
-            SignUp
-          </button>
+          <Link to="/signup">
+            <button className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4">
+              SignUp
+            </button>
+          </Link>
         </div>
       </div>
     </div>

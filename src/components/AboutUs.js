@@ -1,7 +1,7 @@
 import React from "react";
 import burger from "../image/burger.png";
 import { Link } from "react-router-dom";
-import Section from "../Animation.js/Card";
+import Section from "../Animation.js/Section";
 
 export default function AboutUs() {
   return (

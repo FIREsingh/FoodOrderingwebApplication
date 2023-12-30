@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CDN_URL } from "../util/constants";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
-import { removeItem } from "./Redux/slice/CartSlice";
+import { increase, removeItem } from "./Redux/slice/CartSlice";
 
 function Cart() {
   const dispatch = useDispatch();
 
-  //remove handler
+  //increase count when clicked on +
+  const increaseHandler = (items) => {
+    dispatch(increase(items?.card?.info?.id));
+  };
+
+  //Decrease count when clicked on -
+  const decreaseHandler = () => {
+    console.log("dec");
+  };
+
+  //remove item from redux
   function removeHandler(items) {
+    //items?.card?.info?.id will be added as action.payload in redux
     dispatch(removeItem(items?.card?.info?.id));
   }
   //import data from redux
-  const cartItemList = useSelector((state) => state.cart.items);
+  const cartItemList = useSelector((state) => state?.cart?.items);
+  console.log(cartItemList);
+
+  // useEffect((),[])
+  // const totalPrice = cartItemList.reduce((total, num)={
+  //   return total + num;
+  // },0)
 
   return cartItemList.length === 0 ? (
     <div className=" text-center flex justify-center my-30 space-y-10 flex-col w-2/3 mx-72 h-screen">
@@ -68,12 +85,12 @@ function Cart() {
                     : items?.card?.info?.defaultPrice / 100}
                 </h1>
 
-                <div className=" m-auto flex space-x-4    bg-blue-400 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4">
-                  <div>-</div>
+                <div className=" m-auto flex space-x-4 bg-blue-400 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4">
+                  <div onClick={() => decreaseHandler(items)}>-</div>
                   <div className=" border-r-2"></div>
-                  <div>1 </div>
+                  <div>{items?.card?.info?.inStock} </div>
                   <div className=" border-l-2"></div>
-                  <div>+</div>
+                  <div onClick={increaseHandler}>+</div>
                 </div>
 
                 <h1 className="m-auto text-lg"> 67 </h1>
@@ -87,7 +104,7 @@ function Cart() {
         </div>
         <div className="w-2/5  text-cyan-700 ">
           <div className="font-bold text-3xl">Checkout</div>
-          <div>Total Price : </div>
+          <div>Total Price : 3434 </div>
         </div>
       </div>
     </div>

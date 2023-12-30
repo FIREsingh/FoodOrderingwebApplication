@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "./Redux/slice/CartSlice";
 
 export default function InsideItemList({ data }) {
+  //add items on cart(redux)
   const dispatch = useDispatch();
   const addOnCartHandler = (items) => {
     dispatch(addItem(items));
